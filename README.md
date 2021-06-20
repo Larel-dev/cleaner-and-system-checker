@@ -3,12 +3,12 @@ This program cleans garbage, checks system files for errors, and optimizes your 
 
 # ⚑ How to use it?
 
-ENG
+## ENG
 
 Download it, unzip it to system disk, and run the "Start with administrator rights.bat" file as an administrator. Select the language and the desired action.
 After all the manipulations, perform a reboot.
 
-RUS
+## RUS
 
 Скачайте, распакуйте на системный диск, Запускайте файл Start with administrator rights.bat от имени администратора.
 После всех манипуляций перезагрузите ваш компьютер.
