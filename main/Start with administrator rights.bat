@@ -1137,7 +1137,8 @@ REM ; Служба Medic центра обновления Windows
 @Reg.exe add "HKLM\SYSTEM\ControlSet001\Services\WSearch" /v "Start" /t REG_DWORD /d "4" /f
 @Reg.exe add "HKLM\SYSTEM\ControlSet001\Services\SysMain" /v "Start" /t REG_DWORD /d "4" /f
 
-
+sc stop wuauserv
+sc config wuauserv start= disabled
 del /f C:\Windows\System32\SetACL.exe
 @start explorer.exe
 
@@ -2079,6 +2080,8 @@ REM ; Служба Medic центра обновления Windows
 @Reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "EnableLUA" /t REG_DWORD /d "0" /f
 @Reg.exe add "HKLM\SYSTEM\ControlSet001\Services\WSearch" /v "Start" /t REG_DWORD /d "4" /f
 @Reg.exe add "HKLM\SYSTEM\ControlSet001\Services\SysMain" /v "Start" /t REG_DWORD /d "4" /f
+sc stop wuauserv
+sc config wuauserv start= disabled
 del /f C:\Windows\System32\SetACL.exe
 @start explorer.exe
 
