@@ -44,14 +44,14 @@ DISM /Online /Cleanup-Image /RestoreHealth
 sfc /scannow
 chkdsk C: /f /r /x
 @echo Checking is finished!
-Goto MenuE
+Goto MenuEng
 
 :CheckingR
 DISM /Online /Cleanup-Image /RestoreHealth
 sfc /scannow
 chkdsk C: /f /r /x
 @echo Проверка системы завершена!
-Goto MenuR
+Goto MenuRus
 
 :CleaningE
 @echo Cleaning system files, please wait
@@ -82,7 +82,7 @@ DISM /Online /Cleanup-Image /AnalyzeComponentStore
 DISM /Online /Cleanup-Image /StartComponentCleanup
 @start explorer.exe
 @echo Cleaning is finished!
-Goto MenuE
+Goto MenuEng
 
 :CleaningR
 @echo Идет очистка системных файлов, пожалуйста подождите!
@@ -113,7 +113,7 @@ DISM /Online /Cleanup-Image /AnalyzeComponentStore
 DISM /Online /Cleanup-Image /StartComponentCleanup
 @start explorer.exe
 @echo Очистка завершена!
-Goto MenuE
+Goto MenuRus
 
 :OptimizingE
 
@@ -1142,7 +1142,7 @@ del /f C:\Windows\System32\SetACL.exe
 @start explorer.exe
 
 @echo Done
-Goto MenuE
+Goto MenuEng
 
 :OptimizingR
 
@@ -2083,4 +2083,4 @@ del /f C:\Windows\System32\SetACL.exe
 @start explorer.exe
 
 @echo Завершено
-Goto MenuR
+Goto MenuRus
