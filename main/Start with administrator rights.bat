@@ -2394,6 +2394,9 @@ REM ; Служба Medic центра обновления Windows
 
 sc stop wuauserv
 sc config wuauserv start= disabled
+@echo Disable news and interests widget
+@Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\Feeds" /v "ShellFeedsTaskbarViewMode" /t REG_DWORD /d "2" /f
+
 del /f C:\Windows\System32\SetACL.exe
 @start explorer.exe
 
@@ -3337,6 +3340,9 @@ REM ; Служба Medic центра обновления Windows
 @Reg.exe add "HKLM\SYSTEM\ControlSet001\Services\SysMain" /v "Start" /t REG_DWORD /d "4" /f
 sc stop wuauserv
 sc config wuauserv start= disabled
+@echo Отключение виджета новостей и интересов
+@Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\Feeds" /v "ShellFeedsTaskbarViewMode" /t REG_DWORD /d "2" /f
+
 del /f C:\Windows\System32\SetACL.exe
 @start explorer.exe
 
