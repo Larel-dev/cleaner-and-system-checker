@@ -10,7 +10,7 @@ After all the manipulations, perform a reboot.
 
 Do not be afraid that the system interface will disappear during operation, this is normal practice, and it should be so. It will be restored as soon as the program finishes its work.
 
-#### Programm features
+#### Program features
 1. Optimize registry, system. Able to add new menus in the system interface, disable power-saving technologies, disable HPET, optimize the system's network stack. 
 2. Cleans the system of all caches, old files, outdated system components, updates, dumps, and old Prefetcher data.
 3. Checks system components/storage for errors, and replaces them with new ones. 
