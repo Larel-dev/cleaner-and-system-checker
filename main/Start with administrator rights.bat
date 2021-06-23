@@ -26,7 +26,7 @@ Goto End
 @If Errorlevel ==3 goto CheckingE
 @If Errorlevel ==2 goto CleaningE
 @If Errorlevel ==1 goto OptimizingE
-Goto End
+Goto LanguageS
 
 :MenuRus
 @cls
@@ -43,7 +43,7 @@ Goto End
 @If Errorlevel ==3 goto CheckingR
 @If Errorlevel ==2 goto CleaningR
 @If Errorlevel ==1 goto OptimizingR
-Goto End
+Goto LanguageS
 
 :ActivatingE
 @echo off
@@ -2392,11 +2392,12 @@ REM ; Служба Medic центра обновления Windows
 @Reg.exe add "HKLM\SYSTEM\ControlSet001\Services\WSearch" /v "Start" /t REG_DWORD /d "4" /f
 @Reg.exe add "HKLM\SYSTEM\ControlSet001\Services\SysMain" /v "Start" /t REG_DWORD /d "4" /f
 
-sc stop wuauserv
-sc config wuauserv start= disabled
 @echo Disable news and interests widget
 @Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\Feeds" /v "ShellFeedsTaskbarViewMode" /t REG_DWORD /d "2" /f
 
+
+sc stop wuauserv
+sc config wuauserv start= disabled
 del /f C:\Windows\System32\SetACL.exe
 @start explorer.exe
 
@@ -3311,13 +3312,9 @@ REM ; Разрешить локальные сценарии и удалённы
 REM ; Разрешить локальные сценарии и удалённые подписанные сценарии
 @Reg.exe add "HKLM\SOFTWARE\Wow6432Node\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell" /v "ExecutionPolicy" /t REG_SZ /d "RemoteSigned" /f
 REM ;Файл подкачки оптимиз.
-@Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "PagingFiles" /t REG_MULTI_SZ /d "c:\pagefile.sys 1024 2048" /f
-@Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "ExistingPageFiles" /t REG_MULTI_SZ /d "\??\C:\pagefile.sys" /f
+wmic computersystem where name="%computername%" set AutomaticManagedPagefile=true
 REM ; Отключить автообновление карт
 @Reg.exe add "HKLM\SYSTEM\Maps" /v "AutoUpdateEnabled" /t REG_DWORD /d "0" /f
-REM ; Prefetcher, Superfetch: 2 – ускорение только загрузки системы, 3 – ускорение загрузки системы и запуска приложений
-@Reg.exe add "HKLM\SYSTEM\ControlSet001\Control\Session Manager\Memory Management\PrefetchParameters" /v "EnablePrefetcher" /t REG_DWORD /d "2" /f
-@Reg.exe add "HKLM\SYSTEM\ControlSet001\Control\Session Manager\Memory Management\PrefetchParameters" /v "EnableSuperfetch" /t REG_DWORD /d "2" /f
 REM ; Разрешить гостевой вход (для доступа к расшаренным папкам)
 @Reg.exe add "HKLM\SYSTEM\ControlSet001\Services\LanmanWorkstation\Parameters" /v "AllowInsecureGuestAuth" /t REG_DWORD /d "1" /f
 REM ; Не расширять динамические VHD до максимума
@@ -3336,8 +3333,6 @@ REM ; Служба Medic центра обновления Windows
 @Reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "PromptOnSecureDesktop" /t REG_DWORD /d "0" /f
 @Reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "EnableVirtualization" /t REG_DWORD /d "0" /f
 @Reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "EnableLUA" /t REG_DWORD /d "0" /f
-@Reg.exe add "HKLM\SYSTEM\ControlSet001\Services\WSearch" /v "Start" /t REG_DWORD /d "4" /f
-@Reg.exe add "HKLM\SYSTEM\ControlSet001\Services\SysMain" /v "Start" /t REG_DWORD /d "4" /f
 sc stop wuauserv
 sc config wuauserv start= disabled
 @echo Отключение виджета новостей и интересов
