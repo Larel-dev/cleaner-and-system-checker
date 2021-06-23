@@ -14,7 +14,7 @@ Do not be afraid that the system interface will disappear during operation, this
 1. Optimize registry, system. Able to add new menus in the system interface, disable power-saving technologies, disable HPET, optimize the system's network stack. 
 2. Cleans the system of all caches, old files, outdated system components, updates, dumps, and old Prefetcher data.
 3. Checks system components/storage for errors, and replaces them with new ones. 
-4. Has a built-in activator for Windows 10, rewritten by Larel especially for this program.
+4. Has a built-in activator for Windows 10, rewritten especially for this program.
 
 ### Использование на русском:
 
@@ -27,4 +27,4 @@ Do not be afraid that the system interface will disappear during operation, this
 1. Оптимизация реестра, системных окон. Умеет добавлять новые менюшки в системном интерфейсе, отключает энергосберегающие технологии, отключает HPET, оптимизирует сетевой стек системы. 
 2. Очистка системы от всех кэшей, старых файлов, устаревших системных компонентов, обновлений, дампов, а также старых данных Prefetcher-а.
 3. Проверка системных компонентов/хранилища на ошибки, а также замена их на новые. 
-4. Имеет встроенный активатор для Windows 10, переписанный Larel, специально для этой программы.
+4. Имеет встроенный активатор для Windows 10, переписанный специально для этой программы.
