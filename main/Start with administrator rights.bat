@@ -1964,18 +1964,19 @@ ClassicStartMenu.exe -xml "C:\Windows\Custom\startmenu.xml" 1>NUL 2>NUL
 del /f /q "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\startup.bat" 1>NUL 2>NUL
 @timeout 1 /nobreak
 
-@echo Disabling HPET
+@echo Fixing HPET...
 bcdedit /deletevalue useplatformclock
-bcdedit /set disabledynamictick yes
+bcdedit /deletevalue tscsyncpolicy 
+bcdedit /deletevalue disabledynamictick
 
 @echo Network Tweaks
-netsh int tcp set heuristics disabled
+netsh int tcp set heuristics enabled
 
 @echo Power CFG
 powercfg /setactive scheme_min >nul
 powercfg /change -monitor-timeout-ac 0 >nul
 powercfg /change -disk-timeout-ac 0 >nul
-powercfg /setacvalueindex scheme_current sub_processor PROCTHROTTLEMIN 10 >nul
+powercfg /setacvalueindex scheme_current sub_processor PROCTHROTTLEMIN 100 >nul
 
 @echo Disabling driver signature verification
 verifier /reset
@@ -2394,7 +2395,6 @@ REM ; Служба Medic центра обновления Windows
 
 @echo Disable news and interests widget
 @Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\Feeds" /v "ShellFeedsTaskbarViewMode" /t REG_DWORD /d "2" /f
-
 
 sc stop wuauserv
 sc config wuauserv start= disabled
@@ -2898,13 +2898,13 @@ reg add "HKCU\Software\Microsoft\Windows\DWM" /v "ColorizationColor" /t REG_DWOR
 reg add "HKCU\Software\Microsoft\Windows\DWM" /v "ColorizationAfterglow" /t REG_DWORD /d "3288334336" /f 1>NUL 2>NUL
 reg add "HKCU\Software\Microsoft\Windows\DWM" /v "ColorPrevalence" /t REG_DWORD /d "1" /f 1>NUL 2>NUL
 
-@echo Изменение цвета неактивной строки заголовка на серый
+@echo Изменение цвета неактивной строки заголовка на серый...
 reg add "HKCU\Software\Microsoft\Windows\DWM" /v "AccentColorInactive" /t REG_DWORD /d "4280953386" /f 1>NUL 2>NUL
 
-@echo Удаление размытия на экране входа в систему
+@echo Удаление размытия на экране входа в систему...
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v "DisableAcrylicBackgroundOnLogon" /t REG_DWORD /d "1" /f 1>NUL 2>NUL
 
-@echo Применение классических настроек оболочки
+@echo Применение классических настроек оболочки...
 cd C:\Program Files\Classic Shell 1>NUL 2>NUL
 ClassicStartMenu.exe -xml "C:\Windows\Custom\startmenu.xml" 1>NUL 2>NUL
 
@@ -2912,18 +2912,19 @@ ClassicStartMenu.exe -xml "C:\Windows\Custom\startmenu.xml" 1>NUL 2>NUL
 del /f /q "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\startup.bat" 1>NUL 2>NUL
 @timeout 1 /nobreak
 
-@echo Отключение HPET
+@echo Исправление бага с HPET...
 bcdedit /deletevalue useplatformclock
-bcdedit /set disabledynamictick yes
+bcdedit /deletevalue tscsyncpolicy 
+bcdedit /deletevalue disabledynamictick
 
-@echo Network Tweaks
-netsh int tcp set heuristics disabled
+@echo Применение сетевых твиков...
+netsh int tcp set heuristics enabled
 
-@echo Настройка электропитания
+@echo Настройка электропитания...
 powercfg /setactive scheme_min >nul
 powercfg /change -monitor-timeout-ac 0 >nul
 powercfg /change -disk-timeout-ac 0 >nul
-powercfg /setacvalueindex scheme_current sub_processor PROCTHROTTLEMIN 10 >nul
+powercfg /setacvalueindex scheme_current sub_processor PROCTHROTTLEMIN 100 >nul
 
 @echo Отключение проверки подписи драйверов
 verifier /reset
@@ -3333,6 +3334,7 @@ REM ; Служба Medic центра обновления Windows
 @Reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "PromptOnSecureDesktop" /t REG_DWORD /d "0" /f
 @Reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "EnableVirtualization" /t REG_DWORD /d "0" /f
 @Reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "EnableLUA" /t REG_DWORD /d "0" /f
+
 sc stop wuauserv
 sc config wuauserv start= disabled
 @echo Отключение виджета новостей и интересов
