@@ -1509,6 +1509,7 @@ reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager\S
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager\SuggestedApps" /v "USATODAY.USATODAY_wy7mw3214mat8" /t REG_DWORD /d "0" /f 1>NUL 2>NUL
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager\SuggestedApps" /v "WinZipComputing.WinZipUniversal_3ykzqggjzj4z0" /t REG_DWORD /d "0" /f 1>NUL 2>NUL
 
+
 @cls
 @echo Remove potential bloat
 @echo.
@@ -1619,7 +1620,17 @@ powershell.exe "Get-AppxPackage *Microsoft.YourPhone* | Remove-AppxPackage"
 powershell.exe "Get-AppxPackage *Microsoft.WebMediaExtensions* | Remove-AppxPackage"
 powershell.exe "Get-AppxPackage *Microsoft.MixedReality.Portal* | Remove-AppxPackage"
 
+
+@chcp 437 > nul
+@chcp 65001
+@cls
 @echo Remove potential bloat for new users
+@echo.
+@echo **********************************************************************
+@echo This may take a very long time, so please do not turn off the program
+@echo **********************************************************************
+@echo.
+@chcp 437 > nul
 powershell.exe "Get-AppxProvisionedPackage -Online | where Displayname -EQ *Microsoft.DesktopAppInstaller* | Remove-AppxProvisionedPackage -Online"
 powershell.exe "Get-AppxProvisionedPackage -Online | where Displayname -EQ *Microsoft.3DBuilder* | Remove-AppxProvisionedPackage -Online"
 powershell.exe "Get-AppxProvisionedPackage -Online | where Displayname -EQ *Microsoft.Appconnector* | Remove-AppxProvisionedPackage -Online"
@@ -2847,7 +2858,16 @@ powershell.exe "Get-AppxPackage *Microsoft.YourPhone* | Remove-AppxPackage"
 powershell.exe "Get-AppxPackage *Microsoft.WebMediaExtensions* | Remove-AppxPackage"
 powershell.exe "Get-AppxPackage *Microsoft.MixedReality.Portal* | Remove-AppxPackage"
 
+@chcp 437 > nul
+@chcp 65001
+@cls
 @echo Удаление потенциально нежелательных программ для новых пользователей
+@echo.
+@echo ***********************************************************************************
+@echo Это может занять очень много времени, поэтому, пожалуйста, не выключайте программу
+@echo ***********************************************************************************
+@echo.
+@chcp 437 > nul
 powershell.exe "Get-AppxProvisionedPackage -Online | where Displayname -EQ *Microsoft.DesktopAppInstaller* | Remove-AppxProvisionedPackage -Online"
 powershell.exe "Get-AppxProvisionedPackage -Online | where Displayname -EQ *Microsoft.3DBuilder* | Remove-AppxProvisionedPackage -Online"
 powershell.exe "Get-AppxProvisionedPackage -Online | where Displayname -EQ *Microsoft.Appconnector* | Remove-AppxProvisionedPackage -Online"
