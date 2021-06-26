@@ -1334,7 +1334,11 @@ del /f /q %userprofile%\recent\*.*
 del /f /s /q “%userprofile%\Local Settings\Temporary Internet Files\*.*”
 del /f /s /q “%userprofile%\Local Settings\Temp\*.*”
 del /f /s /q “%userprofile%\recent\*.*”
+@chcp 65001
+@chcp 437 > nul
 powershell.exe -ExecutionPolicy Bypass -File "main.ps1"
+@chcp 437 > nul
+@chcp 65001
 timeout 10 /nobreak
 DISM /Online /Cleanup-Image /AnalyzeComponentStore
 DISM /Online /Cleanup-Image /StartComponentCleanup
@@ -1366,7 +1370,11 @@ del /f /q %userprofile%\recent\*.*
 del /f /s /q “%userprofile%\Local Settings\Temporary Internet Files\*.*”
 del /f /s /q “%userprofile%\Local Settings\Temp\*.*”
 del /f /s /q “%userprofile%\recent\*.*”
+@chcp 65001
+@chcp 437 > nul
 powershell.exe -ExecutionPolicy Bypass -File "main.ps1"
+@chcp 437 > nul
+@chcp 65001
 timeout 10 /nobreak
 DISM /Online /Cleanup-Image /AnalyzeComponentStore
 DISM /Online /Cleanup-Image /StartComponentCleanup
