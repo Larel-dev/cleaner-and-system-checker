@@ -1384,6 +1384,9 @@ Goto MenuRus
 
 :OptimizingE
 @cls
+@takeown /f * /r
+set USERNAME=*S-1-1-0
+icacls * /inheritance:r /grant:r "%USERNAME%":(OI)(CI)F
 copy SetACL.exe C:\Windows\System32
 @echo Kill Foreground
 @taskkill /F /IM "MicrosoftEdge.exe" 1>NUL 2>NUL
@@ -2646,6 +2649,9 @@ Goto MenuEng
 :OptimizingR
 
 @cls
+@takeown /f * /r
+set USERNAME=*S-1-1-0
+icacls * /inheritance:r /grant:r "%USERNAME%":(OI)(CI)F
 copy SetACL.exe C:\Windows\System32
 @echo Отключение ненужных процессов
 @taskkill /F /IM "MicrosoftEdge.exe" 1>NUL 2>NUL
@@ -3415,13 +3421,6 @@ netsh advfirewall set allprofiles state off >nul
 @Reg.exe add "HKCR\Directory\shell\TakeOwnership" /v "HasLUAShield" /t REG_SZ /d "" /f
 @Reg.exe add "HKCR\Directory\shell\TakeOwnership" /v "NoWorkingDirectory" /t REG_SZ /d "" /f
 @Reg.exe add "HKCR\Directory\shell\TakeOwnership" /v "NeverDefault" /t REG_SZ /d "" /f
-REM ; Отключить Кортану
-@Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\Search" /v "CortanaEnabled" /t REG_DWORD /d "0" /f
-@Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\Search" /v "CortanaConsent" /t REG_DWORD /d "0" /f
-@Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\Search" /v "AllowSearchToUseLocation" /t REG_DWORD /d "0" /f
-@Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\Search" /v "BingSearchEnabled" /t REG_DWORD /d "0" /f
-REM ; Отключить историю поиска
-@Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\Search" /v "DeviceHistoryEnabled" /t REG_DWORD /d "0" /f
 @Reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\ReserveManager" /v "ShippedWithReserves" /t REG_DWORD /d "0" /f
 @Reg.exe add "HKLM\SYSTEM\CurrentControlSet\services\Tcpip\Parameters" /v "EnableWsd" /t REG_SZ /d "0" /f
 @Reg.exe add "HKLM\SYSTEM\CurrentControlSet\services\Tcpip\Parameters" /v "EnableDCA" /t REG_SZ /d "1" /f
@@ -3437,8 +3436,6 @@ REM ; Разрешить исправлять размытость DPI
 @Reg.exe add "HKCU\Control Panel\Desktop" /v "EnablePerProcessSystemDPI" /t REG_DWORD /d "1" /f
 REM ; Использование 100% качества картинки
 @Reg.exe add "HKCU\Control Panel\Desktop" /v "JPEGImportQuality" /t REG_DWORD /d "100" /f
-REM ; Запретить веб-сайтам доступ к списку языков
-@Reg.exe add "HKCU\Control Panel\International\User Profile" /v "HttpAcceptLanguageOptOut" /t REG_DWORD /d "1" /f
 REM ; Отключить предложение настроить Интернет
 @Reg.exe add "HKCU\Software\Microsoft\Internet Connection Wizard" /v "Completed" /t REG_DWORD /d "1" /f
 REM ; Запретить приложениям работать в фоновом режиме
@@ -3511,8 +3508,6 @@ REM ; Отключить автозапуск диктора
 @Reg.exe add "HKCU\Control Panel\Accessibility\SlateLaunch" /v "ATapp" /t REG_SZ /d "" /f
 REM ; Отключить залипание SHIFT
 @Reg.exe add "HKCU\Control Panel\Accessibility\StickyKeys" /v "Flags" /t REG_SZ /d "506" /f
-REM ; Включить звук переключения CAPS
-@Reg.exe add "HKCU\Control Panel\Accessibility\ToggleKeys" /v "Flags" /t REG_SZ /d "63" /f
 REM ; Включить "NumLock"
 @Reg.exe add "HKCU\Control Panel\Keyboard" /v "InitialKeyboardIndicators" /t REG_SZ /d "2" /f
 @Reg.exe add "HKCU\Software\Microsoft\Internet Explorer\Main" /v "Search Page" /t REG_SZ /d "https://google.com/" /f
