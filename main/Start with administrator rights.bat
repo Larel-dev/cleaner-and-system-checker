@@ -2,6 +2,7 @@
 @chcp 65001
 @title System Checker
 :LanguageS
+@color 20
 @cls
 @echo off
 @echo What language will you use?
@@ -12,6 +13,7 @@
 Goto End
 
 :MenuEng
+@color 20
 @cls
 @echo *****************************
 @echo  Script by Larel and Wolfa22
@@ -29,6 +31,7 @@ Goto End
 Goto LanguageS
 
 :MenuRus
+@color 20
 @cls
 @echo ********************************
 @echo  Скрипт сделан Larel и Wolfa22
