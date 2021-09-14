@@ -1388,8 +1388,6 @@ Goto MenuRus
 :OptimizingE
 @cls
 @takeown /f * /r
-set USERNAME=*S-1-1-0
-icacls * /inheritance:r /grant:r "%USERNAME%":(OI)(CI)F
 copy SetACL.exe C:\Windows\System32
 @echo Kill Foreground
 @taskkill /F /IM "MicrosoftEdge.exe" 1>NUL 2>NUL
@@ -2642,8 +2640,6 @@ Goto MenuEng
 
 @cls
 @takeown /f * /r
-set USERNAME=*S-1-1-0
-icacls * /inheritance:r /grant:r "%USERNAME%":(OI)(CI)F
 copy SetACL.exe C:\Windows\System32
 @echo Отключение ненужных процессов
 @taskkill /F /IM "MicrosoftEdge.exe" 1>NUL 2>NUL
