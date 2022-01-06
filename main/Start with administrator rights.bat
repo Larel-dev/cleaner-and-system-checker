@@ -1387,7 +1387,6 @@ Goto MenuRus
 
 :OptimizingE
 @cls
-@takeown /f * /r
 copy SetACL.exe C:\Windows\System32
 @echo Kill Foreground
 @taskkill /F /IM "MicrosoftEdge.exe" 1>NUL 2>NUL
@@ -2639,7 +2638,6 @@ Goto MenuEng
 :OptimizingR
 
 @cls
-@takeown /f * /r
 copy SetACL.exe C:\Windows\System32
 @echo Отключение ненужных процессов
 @taskkill /F /IM "MicrosoftEdge.exe" 1>NUL 2>NUL
