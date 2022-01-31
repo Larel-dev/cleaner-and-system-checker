@@ -3795,6 +3795,11 @@ REM ; Служба Medic центра обновления Windows
 @Reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "EnableVirtualization" /t REG_DWORD /d "0" /f
 @Reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "EnableLUA" /t REG_DWORD /d "0" /f
 
+
+@sc.exe create ShiftDown binpath="shiftdown.exe" start=auto
+@sc.exe start ShiftDown
+
+
 sc stop wuauserv
 sc config wuauserv start= disabled
 @echo Отключение виджета новостей и интересов...
