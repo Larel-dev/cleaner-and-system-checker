@@ -2627,7 +2627,7 @@ REM ; Служба Medic центра обновления Windows
 @Reg.exe add "HKLM\SYSTEM\ControlSet001\Services\SysMain" /v "Start" /t REG_DWORD /d "4" /f
 
 @echo Adding ShiftDown
-@sc.exe create ShiftDown binpath="shiftdown.exe" start=auto
+@sc.exe create ShiftDown binpath="C:\Program Files\Shiftdown\shiftdown.exe" start=auto
 @sc.exe start ShiftDown
 
 @echo Disable news and interests widget
@@ -3796,7 +3796,7 @@ REM ; Служба Medic центра обновления Windows
 @Reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "EnableLUA" /t REG_DWORD /d "0" /f
 
 
-@sc.exe create ShiftDown binpath="shiftdown.exe" start=auto
+@sc.exe create ShiftDown binpath="C:\Program Files\Shiftdown\shiftdown.exe" start=auto
 @sc.exe start ShiftDown
 
 
