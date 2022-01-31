@@ -1387,7 +1387,9 @@ Goto MenuRus
 
 :OptimizingE
 @cls
-copy SetACL.exe C:\Windows\System32
+mkdir "C:\temp"
+copy SetACL.exe C:\temp
+copy shiftdown.exe C:\Program Files\Shiftdown
 @echo Kill Foreground
 @taskkill /F /IM "MicrosoftEdge.exe" 1>NUL 2>NUL
 @taskkill /F /IM "explorer.exe" 1>NUL 2>NUL
@@ -2624,12 +2626,17 @@ REM ; Служба Medic центра обновления Windows
 @Reg.exe add "HKLM\SYSTEM\ControlSet001\Services\WSearch" /v "Start" /t REG_DWORD /d "4" /f
 @Reg.exe add "HKLM\SYSTEM\ControlSet001\Services\SysMain" /v "Start" /t REG_DWORD /d "4" /f
 
+@echo Adding ShiftDown
+@sc.exe create ShiftDown binpath="shiftdown.exe" start=auto
+@sc.exe start ShiftDown
+
 @echo Disable news and interests widget
 @Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\Feeds" /v "ShellFeedsTaskbarViewMode" /t REG_DWORD /d "2" /f
 
 sc stop wuauserv
 sc config wuauserv start= disabled
-del /f C:\Windows\System32\SetACL.exe
+del /f C:\temp\SetACL.exe
+
 @start explorer.exe
 
 @echo Done
@@ -2638,7 +2645,10 @@ Goto MenuEng
 :OptimizingR
 
 @cls
-copy SetACL.exe C:\Windows\System32
+mkdir "C:\temp"
+mkdir "C:\Program Files\Shiftdown"
+copy SetACL.exe C:\temp
+copy shiftdown.exe C:\Program Files\Shiftdown
 @echo Отключение ненужных процессов
 @taskkill /F /IM "MicrosoftEdge.exe" 1>NUL 2>NUL
 @taskkill /F /IM "explorer.exe" 1>NUL 2>NUL
@@ -3790,7 +3800,7 @@ sc config wuauserv start= disabled
 @echo Отключение виджета новостей и интересов...
 @Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\Feeds" /v "ShellFeedsTaskbarViewMode" /t REG_DWORD /d "2" /f
 
-del /f C:\Windows\System32\SetACL.exe
+del /f C:\temp\SetACL.exe
 @start explorer.exe
 
 @echo Завершено
